@@ -1,6 +1,6 @@
 "use strict";
 
-export default class Jokes {
+export default class Joke {
 	constructor(category, setup, delivery) {
 		this.category = category;
 		this.setup = setup;

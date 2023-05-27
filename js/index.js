@@ -1,6 +1,6 @@
 "use strict";
 
-import Jokes from "../js/Jokes.js";
+import Joke from "../js/Jokes.js";
 
 const app = {
 	items: [],
@@ -10,22 +10,22 @@ const app = {
 	getData() {
 		fetch("https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,religious,racist,sexist,explicit&amount=10")
 			.then(function (response) {
-				console.log(response);
 				return response.json();
 			})
 			.then(function (json) {
-				json.jokes.forEach(function (jokesData) {
-					console.log(Jokes);
-					const joke = new Jokes(jokesData.category, jokesData.setup, jokesData.delivery);
-					app.items.push(joke);
-					app.render(joke);
+				json.jokes.forEach((jokeData) => {
+					const joke = new Joke(jokeData.category, jokeData.setup, jokeData.delivery);
+					app.items.push();
+
+					console.log(joke);
 				});
+				app.render();
 			});
 	},
 	onSearch() {},
-	render(message) {
+	render() {
 		console.log(app.items);
-		document.querySelector("#list").insertAdjacentHTML("beforeend", message.htmlString);
+		document.querySelector("#list").insertAdjacentHTML("beforeend", app.items[0].htmlString);
 	},
 };
 app.init();
